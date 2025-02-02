@@ -92,8 +92,10 @@ export async function getLangChainAzureOpenAIAdapter() {
 }
 
 export async function getGroqAdapter() {
+  const { Groq } = await import("groq-sdk");
+  const groq = new Groq({ apiKey: process.env["GROQ_API_KEY"] }) as any;
   const { GroqAdapter } = await import("@copilotkit/runtime");
-  return new GroqAdapter();
+  return new GroqAdapter({ groq, model: "llama-3.3-70b-versatile" });
 }
 
 

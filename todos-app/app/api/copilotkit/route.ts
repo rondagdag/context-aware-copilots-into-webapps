@@ -16,11 +16,11 @@ import {
       //serviceAdapter: await getOpenAIAdapter(),
       //serviceAdapter: await getLangChainAzureOpenAIAdapter(),
       //serviceAdapter: await getAzureOpenAIAdapter(),
-      //serviceAdapter: await getGroqAdapter(),
+      serviceAdapter: await getGroqAdapter(),
       //serviceAdapter: await getLangChainOllamaAdapter(),
       //serviceAdapter: await getLangChainOllamaPhiAdapter(),
       //serviceAdapter: await getLangChainOllamaDeepSeekAdapter(),
-      serviceAdapter: await getLangChainGithubOpenAIAdapter(),
+      //serviceAdapter: await getLangChainGithubOpenAIAdapter(),
       endpoint: req.nextUrl.pathname,
     });
    
