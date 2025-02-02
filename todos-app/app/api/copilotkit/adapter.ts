@@ -39,7 +39,7 @@ export async function getLangChainOllamaAdapter() {
   return new LangChainAdapter({
     chainFn: async ({ messages, tools }) => {
       const model = new ChatOllama({
-        model: "llama3.2", // Default value
+        model: "llama3-groq-tool-use", // Default value
         temperature: 0
       }).bind(tools as any) as any;
       return model.stream(messages, { tools });
@@ -53,9 +53,9 @@ export async function getLangChainOllamaPhiAdapter() {
   return new LangChainAdapter({
     chainFn: async ({ messages, tools }) => {
       const model = new ChatOllama({
-        model: "phi4", // Default value
+        model: "phi3.5", // Default value
         temperature: 0,
-      }).bind(tools as any) as any;
+      }).bindTools(tools as any) as any;
       return model.stream(messages, { tools });
     },
   });
@@ -67,9 +67,9 @@ export async function getLangChainOllamaDeepSeekAdapter() {
   return new LangChainAdapter({
     chainFn: async ({ messages, tools }) => {
       const model = new ChatOllama({
-        model: "deepseek-r1:8b", // Default value
+        model: "MFDoom/deepseek-r1-tool-calling:1.5b", // Default value
         temperature: 0,
-      }).bind(tools as any) as any;
+      }).bindTools(tools as any) as any;
       return model.stream(messages, { tools });
     },
   });

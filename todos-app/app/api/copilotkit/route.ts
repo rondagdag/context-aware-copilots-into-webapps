@@ -19,8 +19,8 @@ import {
       //serviceAdapter: await getGroqAdapter(),
       //serviceAdapter: await getLangChainOllamaAdapter(),
       //serviceAdapter: await getLangChainOllamaPhiAdapter(),
-      serviceAdapter: await getLangChainOllamaDeepSeekAdapter(),
-      //serviceAdapter: await getLangChainGithubOpenAIAdapter(),
+      //serviceAdapter: await getLangChainOllamaDeepSeekAdapter(),
+      serviceAdapter: await getLangChainGithubOpenAIAdapter(),
       endpoint: req.nextUrl.pathname,
     });
    

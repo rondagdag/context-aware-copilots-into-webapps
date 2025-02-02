@@ -47,13 +47,13 @@ export async function getLangChainOllamaAdapter() {
   });
 }
 
-export async function getLangChainOllamaPhi35Adapter() {
+export async function getLangChainOllamaPhiAdapter() {
   const { LangChainAdapter } = await import("@copilotkit/runtime");
   const { ChatOllama } = await import("@langchain/ollama");
   return new LangChainAdapter({
     chainFn: async ({ messages }) => {
       const model = new ChatOllama({
-        model: "phi3.5", // Default value
+        model: "phi4", // Default value
         temperature: 0,
       }) as any;
       return model.stream(messages);
