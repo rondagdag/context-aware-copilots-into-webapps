@@ -23,5 +23,16 @@
       "Hermione Granger"
     ],
     "id": 1732155568037
+  },
+  {
+    "name": "Morphomagia",
+    "description": "Enables the caster to transform themselves or another into any desired creature or object. Requires strong focus and precise visualization of the target form. The transformation is temporary unless specified otherwise.",
+    "pronunciation": "Mor-foh-MAH-jee-ah",
+    "seenMentioned": "Not canonically mentioned in Harry Potter movies, but can be inspired by transfiguration spells.",
+    "knownPractitioners": [
+      "Advanced-level witches and wizards trained in transfiguration",
+      "such as Professor McGonagall."
+    ],
+    "id": 1738640025257
   }
 ]

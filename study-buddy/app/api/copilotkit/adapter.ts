@@ -39,7 +39,7 @@ export async function getLangChainOllamaAdapter() {
   return new LangChainAdapter({
     chainFn: async ({ messages, tools }) => {
       const model = new ChatOllama({
-        model: "llama3.2", // Default value
+        model: "llama3-groq-tool-use", // Default value
         temperature: 0
       }).bind(tools as any) as any;
       return model.stream(messages, { tools });
@@ -51,15 +51,30 @@ export async function getLangChainOllamaPhiAdapter() {
   const { LangChainAdapter } = await import("@copilotkit/runtime");
   const { ChatOllama } = await import("@langchain/ollama");
   return new LangChainAdapter({
-    chainFn: async ({ messages }) => {
+    chainFn: async ({ messages, tools }) => {
       const model = new ChatOllama({
-        model: "phi4", // Default value
+        model: "zac/phi4-tools", // Default value
         temperature: 0,
-      }) as any;
-      return model.stream(messages);
+      }).bindTools(tools as any) as any;
+      return model.stream(messages, { tools });
     },
   });
 }
+
+export async function getLangChainOllamaDeepSeekAdapter() {
+  const { LangChainAdapter } = await import("@copilotkit/runtime");
+  const { ChatOllama } = await import("@langchain/ollama");
+  return new LangChainAdapter({
+    chainFn: async ({ messages, tools }) => {
+      const model = new ChatOllama({
+        model: "MFDoom/deepseek-r1-tool-calling:1.5b", // Default value
+        temperature: 0,
+      }).bindTools(tools as any) as any;
+      return model.stream(messages, { tools });
+    },
+  });
+}
+
 
 export async function getLangChainAzureOpenAIAdapter() {
   const { LangChainAdapter } = await import("@copilotkit/runtime");
@@ -77,9 +92,12 @@ export async function getLangChainAzureOpenAIAdapter() {
 }
 
 export async function getGroqAdapter() {
+  const { Groq } = await import("groq-sdk");
+  const groq = new Groq({ apiKey: process.env["GROQ_API_KEY"] }) as any;
   const { GroqAdapter } = await import("@copilotkit/runtime");
-  return new GroqAdapter();
+  return new GroqAdapter({ groq, model: "llama-3.3-70b-versatile" });
 }
+
 
 export async function getLangChainGithubOpenAIAdapter() {
   const { LangChainAdapter } = await import("@copilotkit/runtime");
