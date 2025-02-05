@@ -27,7 +27,7 @@ export async function getLangChainOpenAIAdapter() {
       const model = new ChatOpenAI({
         modelName: "gpt-4",
         apiKey: process.env.OPENAI_API_KEY,
-      }).bind(tools as any) as any;
+      }).bindTools(tools);
       return model.stream(messages, { tools });
     },
   });
@@ -41,7 +41,7 @@ export async function getLangChainOllamaAdapter() {
       const model = new ChatOllama({
         model: "llama3-groq-tool-use", // Default value
         temperature: 0
-      }).bind(tools as any) as any;
+      }).bindTools(tools);
       return model.stream(messages, { tools });
     },
   });
@@ -55,7 +55,7 @@ export async function getLangChainOllamaPhiAdapter() {
       const model = new ChatOllama({
         model: "phi3.5", // Default value
         temperature: 0,
-      }).bindTools(tools as any) as any;
+      }).bindTools(tools);
       return model.stream(messages, { tools });
     },
   });
@@ -69,7 +69,7 @@ export async function getLangChainOllamaDeepSeekAdapter() {
       const model = new ChatOllama({
         model: "MFDoom/deepseek-r1-tool-calling:1.5b", // Default value
         temperature: 0,
-      }).bindTools(tools as any) as any;
+      }).bindTools(tools);
       return model.stream(messages, { tools });
     },
   });
@@ -85,7 +85,7 @@ export async function getLangChainAzureOpenAIAdapter() {
         model: "gpt-4o",
         temperature: 0,
         maxTokens: undefined,
-        maxRetries: 2}).bind(tools as any) as any;
+        maxRetries: 2}).bindTools(tools);
       return model.stream(messages, { tools });
     },
   });
@@ -110,7 +110,7 @@ export async function getLangChainGithubOpenAIAdapter() {
         configuration: {
           baseURL: 'https://models.inference.ai.azure.com'
         }
-      }).bind(tools as any) as any;
+      }).bindTools(tools);
       return model.stream(messages, { tools });
     },
   });
