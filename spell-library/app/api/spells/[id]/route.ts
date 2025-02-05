@@ -8,7 +8,8 @@ const spellDataFile = path.join(process.cwd(), 'spellData.json');
 
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   const spellData = JSON.parse(fs.readFileSync(spellDataFile, 'utf8'));
-  const spell = spellData.find((spell: any) => spell.id === Number(params.id));
+  const { id } = await params;
+  const spell = spellData.find((spell: any) => spell.id === Number(id));
 
   if (!spell) {
     return NextResponse.json({ message: 'Spell not found' }, { status: 404 });
